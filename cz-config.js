@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = {
   types: [
     { value: '✨ Feat', name: '✨ Feat: 새로운 기능 추가' },
