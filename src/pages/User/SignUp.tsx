@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Input from '../../components/Input';
+import 'styled-components';
 
 interface UserInfo {
   email: string;
