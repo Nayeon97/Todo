@@ -2,11 +2,3 @@
   padding: 0;
   margin: 0;
 }
-
-body {
-  @apply bg-slate-200;
-}
-
-.App {
-  @apply m-auto mt-36 p-12 w-1/2 h-96 bg-white rounded-lg;
-}
