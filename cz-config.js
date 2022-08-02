@@ -17,7 +17,7 @@ module.exports = {
     },
     {
       value: '🔧 Chore',
-      name: '🔧 Chore:\t기타 변경사항(라이브러리 추가/수정..)ㄴ',
+      name: '🔧 Chore:\t기타 변경사항(라이브러리 추가/수정..)',
     },
   ],
   allowCustomScopes: false,
