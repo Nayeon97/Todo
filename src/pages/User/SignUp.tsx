@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Input from '../../components/Input';
 import 'styled-components';
+import Button from '../../components/Button';
 
 interface UserInfo {
   email: string;
@@ -34,6 +35,12 @@ const SignUp = () => {
         name="password"
         value={register.password}
         onChange={onChange}
+      />
+      <Button
+        name={'연습'}
+        onClick={() => {
+          console.log('일단');
+        }}
       />
     </div>
   );
