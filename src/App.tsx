@@ -1,12 +1,19 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignUp from './pages/User/SignUp';
+import SignIn from './pages/User/SignIn';
 import styled from 'styled-components';
 
 const App = () => {
   return (
     <AppContainer>
-      <SignUp />
+      <Router>
+        <Routes>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+        </Routes>
+      </Router>
     </AppContainer>
   );
 };

@@ -2,18 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import AccountForm from '../../components/organisms/user/AccountForm';
 
-const SignUp = () => {
+const SignIn = () => {
   return (
     <SignUpContainer>
       <TitleWrapper>
-        <h2>📄 회원 가입</h2>
+        <h2>🔑 로그인</h2>
       </TitleWrapper>
-      <AccountForm url="signUp" />
+      <AccountForm url="signIn" />
     </SignUpContainer>
   );
 };
 
-export default SignUp;
+export default SignIn;
 
 const SignUpContainer = styled.div`
   display: grid;
