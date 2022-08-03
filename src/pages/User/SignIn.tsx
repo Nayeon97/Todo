@@ -24,4 +24,5 @@ const SignUpContainer = styled.div`
 const TitleWrapper = styled.div`
   margin-right: 220px;
   margin-bottom: 30px;
+  color: #339af0;
 `;

@@ -25,7 +25,10 @@ const AccountForm = ({ url, name }: AccountProp) => {
     return checkEmail.test(email);
   };
 
-  const isActive = validateEmail(account.email) && account.password.length > 7;
+  const isEmailValid = validateEmail(account.email);
+  const isPasswordValid = account.password.length > 7;
+
+  const isActive = isEmailValid && isPasswordValid;
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -49,6 +52,7 @@ const AccountForm = ({ url, name }: AccountProp) => {
           value={account.email}
           onChange={onChange}
         />
+        {!isEmailValid && <p>⚠️ 이메일 형식이 올바르지 않습니다.</p>}
       </InputWrapper>
       <InputWrapper>
         <div>비밀번호</div>
@@ -58,7 +62,9 @@ const AccountForm = ({ url, name }: AccountProp) => {
           value={account.password}
           onChange={onChange}
         />
+        {!isPasswordValid && <p>⚠️ 비밀번호는 8글자 이상입니다.</p>}
       </InputWrapper>
+
       <ButtonWrapper>
         <Button name={name} disabled={!isActive} onClick={onClick} />
       </ButtonWrapper>
@@ -70,6 +76,13 @@ export default AccountForm;
 
 const InputWrapper = styled.div`
   margin-bottom: 20px;
+  div {
+    color: #74c0fc;
+  }
+  p {
+    font-size: 12px;
+    color: #495057;
+  }
 `;
 
 const ButtonWrapper = styled.div`
