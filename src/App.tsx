@@ -4,12 +4,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignUp from './pages/User/SignUp';
 import SignIn from './pages/User/SignIn';
 import styled from 'styled-components';
+import Main from './pages/Main/Main';
 
 const App = () => {
   return (
     <AppContainer>
       <Router>
         <Routes>
+          <Route path="/" element={<Main />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
         </Routes>
