@@ -8,7 +8,7 @@ const SignIn = () => {
       <TitleWrapper>
         <h2>🔑 로그인</h2>
       </TitleWrapper>
-      <AccountForm url="signIn" />
+      <AccountForm url="signIn" name="로그인" />
     </SignUpContainer>
   );
 };

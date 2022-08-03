@@ -10,9 +10,10 @@ interface AccountTypes {
 
 interface AccountProp {
   url: string;
+  name: string;
 }
 
-const AccountForm = ({ url }: AccountProp) => {
+const AccountForm = ({ url, name }: AccountProp) => {
   const [account, setAccount] = useState<AccountTypes>({
     email: '',
     password: '',
@@ -59,7 +60,7 @@ const AccountForm = ({ url }: AccountProp) => {
         />
       </InputWrapper>
       <ButtonWrapper>
-        <Button name={'회원가입'} disabled={!isActive} onClick={onClick} />
+        <Button name={name} disabled={!isActive} onClick={onClick} />
       </ButtonWrapper>
     </>
   );
