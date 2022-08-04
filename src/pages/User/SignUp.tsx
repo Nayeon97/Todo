@@ -8,7 +8,7 @@ const SignUp = () => {
       <TitleWrapper>
         <h2>📄 회원 가입</h2>
       </TitleWrapper>
-      <AccountForm url="signUp" name="회원가입" />
+      <AccountForm url="create" name="회원가입" />
     </SignUpContainer>
   );
 };

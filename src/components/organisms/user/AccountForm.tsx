@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Input from '../../atoms/Input';
 import Button from '../../atoms/Button';
+import { nonTokenInstance } from '../../../api/index';
 
 interface AccountTypes {
   email: string;
@@ -18,6 +20,8 @@ const AccountForm = ({ url, name }: AccountProp) => {
     email: '',
     password: '',
   });
+
+  const navigate = useNavigate();
 
   const validateEmail = (email: string) => {
     const checkEmail =
@@ -38,8 +42,32 @@ const AccountForm = ({ url, name }: AccountProp) => {
     });
   };
 
-  const onClick = () => {
-    console.log(url);
+  const onClick = async () => {
+    if (url == 'create') {
+      try {
+        console.log('create');
+        const res = await nonTokenInstance.post(`/users/${url}`, {
+          email: account.email,
+          password: account.password,
+        });
+        console.log(res.data);
+        navigate('/signin');
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log('login');
+      try {
+        const res = await nonTokenInstance.post(`/users/${url}`, {
+          email: account.email,
+          password: account.password,
+        });
+        window.localStorage.setItem('token', res.data.token);
+        navigate('/todo');
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   return (
