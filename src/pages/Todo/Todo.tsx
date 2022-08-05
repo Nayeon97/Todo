@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { instance } from '../../api/index';
-
+import TodoCard from '../../components/molecules/Todo/TodoCard';
 const Todo = () => {
   useEffect(() => {
     getTodo();
@@ -13,7 +13,7 @@ const Todo = () => {
 
   return (
     <div>
-      <p>Todo App</p>
+      <TodoCard />
     </div>
   );
 };

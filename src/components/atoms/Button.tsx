@@ -1,11 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-interface ButtonProps {
-  name: string;
-  disabled?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-}
+import { ButtonProps } from '../../common/types';
 
 const Button = ({ name, disabled, onClick }: ButtonProps) => {
   return (

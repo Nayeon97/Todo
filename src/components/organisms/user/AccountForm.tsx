@@ -45,12 +45,10 @@ const AccountForm = ({ url, name }: AccountProp) => {
   const onClick = async () => {
     if (url == 'create') {
       try {
-        console.log('create');
         const res = await nonTokenInstance.post(`/users/${url}`, {
           email: account.email,
           password: account.password,
         });
-        console.log(res.data);
         navigate('/signin');
       } catch (err) {
         console.log(err);
