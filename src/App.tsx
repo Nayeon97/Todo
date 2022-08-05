@@ -5,7 +5,7 @@ import SignUp from './pages/User/SignUp';
 import SignIn from './pages/User/SignIn';
 import styled from 'styled-components';
 import Main from './pages/Main/Main';
-import Todo from './pages/Todo/Todo';
+import Todo from './pages/Todo/TodoList';
 
 const App = () => {
   return (
@@ -15,7 +15,7 @@ const App = () => {
           <Route path="/" element={<Main />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
-          <Route path="/todo" element={<Todo />} />
+          <Route path="/todolist" element={<Todo />} />
         </Routes>
       </Router>
     </AppContainer>

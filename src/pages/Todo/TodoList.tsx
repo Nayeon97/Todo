@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { instance } from '../../api/index';
 import TodoCard from '../../components/molecules/Todo/TodoCard';
-const Todo = () => {
+const TodoList = () => {
   useEffect(() => {
     getTodo();
   }, []);
@@ -18,4 +18,4 @@ const Todo = () => {
   );
 };
 
-export default Todo;
+export default TodoList;
