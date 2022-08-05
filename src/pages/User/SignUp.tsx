@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import AccountForm from '../../components/organisms/user/AccountForm';
+import AccountForm from '../../components/molecules/user/AccountForm';
 
 const SignUp = () => {
   return (

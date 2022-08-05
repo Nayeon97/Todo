@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { instance } from '../../api/index';
-import TodoCard from '../../components/molecules/Todo/TodoCard';
+import TodoCard from '../../components/molecules/todo/TodoCard';
 const TodoList = () => {
   useEffect(() => {
     getTodo();
