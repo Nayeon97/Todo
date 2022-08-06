@@ -15,9 +15,12 @@ const TodoCard = () => {
 export default TodoCard;
 
 const CardWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
   width: 300px;
-  height: 50px;
-  padding: 10px 20px;
-  background-color: #f3f0ff;
-  border-radius: 10px;
+  height: 30px;
+  padding: 5px 10px;
+  border-bottom: 2px solid #74c0fc;
+  margin-bottom: 20px;
+  cursor: pointer;
 `;

@@ -7,7 +7,7 @@ interface TitleProps {
 }
 
 const Title = ({ title, type }: TitleProps) => {
-  return <TitleWrapper type={type}>{title}</TitleWrapper>;
+  return <TitleWrapper type={type}>✔️ {title}</TitleWrapper>;
 };
 
 export default Title;

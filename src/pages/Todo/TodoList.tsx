@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { instance } from '../../api/index';
+import styled from 'styled-components';
 import TodoCard from '../../components/molecules/todo/TodoCard';
+
 const TodoList = () => {
   useEffect(() => {
     getTodo();
@@ -12,10 +14,16 @@ const TodoList = () => {
   };
 
   return (
-    <div>
+    <TodoCardContainer>
       <TodoCard />
-    </div>
+    </TodoCardContainer>
   );
 };
 
 export default TodoList;
+
+const TodoCardContainer = styled.div`
+  display: grid;
+  place-items: center;
+  padding-top: 100px;
+`;
