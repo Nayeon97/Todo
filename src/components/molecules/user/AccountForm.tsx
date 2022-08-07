@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Input from '../../atoms/Input';
 import Button from '../../atoms/Button';
 import { nonTokenInstance } from '../../../api/index';
+import { loginState } from '../../../common/atom';
+import { useSetRecoilState } from 'recoil';
 
 interface AccountTypes {
   email: string;
@@ -16,6 +18,8 @@ interface AccountProp {
 }
 
 const AccountForm = ({ url, name }: AccountProp) => {
+  const setLoginState = useSetRecoilState(loginState);
+
   const [account, setAccount] = useState<AccountTypes>({
     email: '',
     password: '',
@@ -54,13 +58,13 @@ const AccountForm = ({ url, name }: AccountProp) => {
         console.log(err);
       }
     } else {
-      console.log('login');
       try {
         const res = await nonTokenInstance.post(`/users/${url}`, {
           email: account.email,
           password: account.password,
         });
         window.localStorage.setItem('token', res.data.token);
+        setLoginState(true);
         navigate('/todo');
       } catch (err) {
         console.log(err);

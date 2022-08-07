@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import Main from './pages/Main/Main';
 import TodoList from './pages/Todo/TodoList';
 import Todo from './pages/Todo/Todo';
+import TodoCreate from './pages/Todo/TodoCreate';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/todolist" element={<TodoList />} />
           <Route path="/todo" element={<Todo />} />
+          <Route path="/todocreate" element={<TodoCreate />} />
         </Routes>
       </Router>
     </AppContainer>

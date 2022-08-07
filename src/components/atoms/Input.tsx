@@ -27,7 +27,4 @@ const InputWrapper = styled.input`
   outline: none;
   font-size: 15px;
   cursor: text;
-  &:focus::-webkit-input-placeholder {
-    color: #748ffc;
-  }
 `;

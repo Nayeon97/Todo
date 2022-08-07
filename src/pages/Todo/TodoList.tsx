@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { instance } from '../../api/index';
 import styled from 'styled-components';
-import TodoCard from '../../components/molecules/todo/TodoCard';
+import TodoListCard from '../../components/molecules/todo/TodoListCard';
 
 const TodoList = () => {
   useEffect(() => {
@@ -9,13 +9,17 @@ const TodoList = () => {
   }, []);
 
   const getTodo = async () => {
-    const res = await instance.get('/todos');
-    console.log(res.data);
+    try {
+      const res = await instance.get('/todos');
+      console.log(res.data);
+    } catch (err) {
+      console.log('error');
+    }
   };
 
   return (
     <TodoCardContainer>
-      <TodoCard />
+      <TodoListCard />
     </TodoCardContainer>
   );
 };

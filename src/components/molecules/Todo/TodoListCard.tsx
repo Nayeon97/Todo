@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import DateText from '../../atoms/DateText';
 import Title from '../../atoms/Title';
 
-const TodoCard = () => {
+const TodoListCard = () => {
   return (
     <CardWrapper>
       <Title title={'제목'} type={'card'} />
@@ -12,7 +12,7 @@ const TodoCard = () => {
   );
 };
 
-export default TodoCard;
+export default TodoListCard;
 
 const CardWrapper = styled.div`
   display: flex;
