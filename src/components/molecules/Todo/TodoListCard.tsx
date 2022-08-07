@@ -1,13 +1,26 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import DateText from '../../atoms/DateText';
 import Title from '../../atoms/Title';
 
-const TodoListCard = () => {
+interface TodoListCardProps {
+  title: string;
+  date: string;
+  id: string;
+}
+
+const TodoListCard = ({ title, date, id }: TodoListCardProps) => {
+  const navigate = useNavigate();
+
+  const onClick = async () => {
+    navigate(`/todo/${id}`, { state: id });
+  };
+
   return (
-    <CardWrapper>
-      <Title title={'제목'} type={'card'} />
-      <DateText date={'2022-02-09'} />
+    <CardWrapper onClick={onClick}>
+      <Title title={title} type={'card'} />
+      <DateText date={date} />
     </CardWrapper>
   );
 };

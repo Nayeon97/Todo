@@ -1,10 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { instance } from '../../api/index';
 import styled from 'styled-components';
 import TodoListCard from '../../components/molecules/todo/TodoListCard';
 import TodoAdd from '../../components/molecules/todo/TodoAdd';
 
+interface TodoTypes {
+  id: string;
+  date: string;
+  title: string;
+  content?: string;
+}
+
 const TodoList = () => {
+  const [todoList, setTodoList] = useState<TodoTypes[]>([]);
+
   useEffect(() => {
     getTodo();
   }, []);
@@ -12,7 +21,7 @@ const TodoList = () => {
   const getTodo = async () => {
     try {
       const res = await instance.get('/todos');
-      console.log(res.data);
+      setTodoList(res.data.data);
     } catch (err) {
       console.log('error');
     }
@@ -21,7 +30,16 @@ const TodoList = () => {
   return (
     <TodoListContainer>
       <TodoListCardsContainer>
-        <TodoListCard />
+        {todoList.map((todo) => {
+          return (
+            <TodoListCard
+              key={todo.id}
+              id={todo.id}
+              title={todo.title}
+              date={todo.date}
+            />
+          );
+        })}
       </TodoListCardsContainer>
       <TodoAdd />
     </TodoListContainer>

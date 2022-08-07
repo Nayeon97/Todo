@@ -65,7 +65,7 @@ const AccountForm = ({ url, name }: AccountProp) => {
         });
         window.localStorage.setItem('token', res.data.token);
         setLoginState(true);
-        navigate('/todo');
+        navigate('/todolist');
       } catch (err) {
         console.log(err);
       }
