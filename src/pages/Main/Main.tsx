@@ -12,10 +12,18 @@ const Main = () => {
         <h1>wanted Todo 🤔</h1>
       </TitleWrapper>
       <ButtonWrapper>
-        <Button name={'로그인 하기'} onClick={() => navigate('/signin')} />
+        <Button
+          name={'로그인 하기'}
+          onClick={() => navigate('/signin')}
+          btnType="submit"
+        />
       </ButtonWrapper>
       <ButtonWrapper>
-        <Button name={'회원가입 하기'} onClick={() => navigate('/signup')} />
+        <Button
+          name={'회원가입 하기'}
+          onClick={() => navigate('/signup')}
+          btnType="submit"
+        />
       </ButtonWrapper>
     </MainContainer>
   );

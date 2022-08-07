@@ -53,7 +53,7 @@ const TodoCreateForm = () => {
         />
       </CreateForm>
       <ButtonWrapper>
-        <Button name="저장하기" onClick={onClick} />
+        <Button name="저장하기" onClick={onClick} btnType={'submit'} />
       </ButtonWrapper>
     </div>
   );

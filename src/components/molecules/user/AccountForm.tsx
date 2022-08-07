@@ -96,7 +96,12 @@ const AccountForm = ({ url, name }: AccountProp) => {
       </InputWrapper>
 
       <ButtonWrapper>
-        <Button name={name} disabled={!isActive} onClick={onClick} />
+        <Button
+          name={name}
+          disabled={!isActive}
+          onClick={onClick}
+          btnType="submit"
+        />
       </ButtonWrapper>
     </>
   );
