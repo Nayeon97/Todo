@@ -1,10 +1,12 @@
 import React from 'react';
 import TodoCreateForm from '../../components/molecules/todo/TodoCreateForm';
 import styled from 'styled-components';
+import TodoHome from '../../components/molecules/todo/TodoHome';
 
 const CreateTodo = () => {
   return (
     <CreateTodoContainer>
+      <TodoHome />
       <TodoCreateForm />
     </CreateTodoContainer>
   );
@@ -13,5 +15,5 @@ const CreateTodo = () => {
 export default CreateTodo;
 
 const CreateTodoContainer = styled.div`
-  padding: 150px 50px;
+  padding: 100px 50px;
 `;

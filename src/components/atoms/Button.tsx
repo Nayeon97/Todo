@@ -21,7 +21,8 @@ export default Button;
 const ButtonWrapper = styled.button<{ btnType: string }>`
   width: ${(props) => (props.btnType === 'submit' ? '100px' : '50px')};
   height: ${(props) => (props.btnType === 'submit' ? '40px' : '50px')};
-  background-color: #0a86f7;
+  background-color: ${(props) =>
+    props.btnType === 'home' ? '#a5d8ff' : '#0a86f7'};
   color: white;
   border: none;
   border-radius: ${(props) => (props.btnType === 'submit' ? '10px' : '50%')};
