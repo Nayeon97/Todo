@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { instance } from '../../api/index';
 import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
+import { loginState } from '../../common/atom';
 import TodoListCard from '../../components/molecules/todo/TodoListCard';
-import TodoAdd from '../../components/molecules/todo/TodoAdd';
+import TodoAddLogout from '../../components/molecules/todo/TodoAddLogout';
+import { useNavigate } from 'react-router-dom';
 
 interface TodoTypes {
-  id: string;
-  date: string;
   title: string;
-  content?: string;
+  content: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 const TodoList = () => {
   const [todoList, setTodoList] = useState<TodoTypes[]>([]);
+  const navigate = useNavigate();
+  const checkLoginState = useRecoilValue(loginState);
 
   useEffect(() => {
-    getTodo();
+    if (!checkLoginState) {
+      alert('로그인 후 이용해주세요.');
+      navigate('/');
+    } else {
+      getTodo();
+    }
   }, []);
 
   const getTodo = async () => {
@@ -36,12 +47,12 @@ const TodoList = () => {
               key={todo.id}
               id={todo.id}
               title={todo.title}
-              date={todo.date}
+              date={todo.updatedAt}
             />
           );
         })}
       </TodoListCardsContainer>
-      <TodoAdd />
+      <TodoAddLogout />
     </TodoListContainer>
   );
 };
