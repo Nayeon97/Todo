@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { loginState } from '../../common/atom';
+import { editState, loginState } from '../../common/atom';
 import TodoEditForm from '../../components/molecules/todo/TodoEditForm';
 import TodoForm from '../../components/molecules/todo/TodoForm';
 
 const Todo = () => {
   const navigate = useNavigate();
   const checkLoginState = useRecoilValue(loginState);
-  const [isEditing, setIsEditing] = useState(true);
+  const checkEditState = useRecoilValue(editState);
 
   useEffect(() => {
     if (!checkLoginState) {
@@ -19,7 +19,9 @@ const Todo = () => {
   }, []);
 
   return (
-    <TodoContainer>{isEditing ? <TodoEditForm /> : <TodoForm />}</TodoContainer>
+    <TodoContainer>
+      {checkEditState ? <TodoEditForm /> : <TodoForm />}
+    </TodoContainer>
   );
 };
 

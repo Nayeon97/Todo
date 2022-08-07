@@ -6,6 +6,8 @@ import Button from '../../atoms/Button';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { instance } from '../../../api/index';
+import { useSetRecoilState } from 'recoil';
+import { editState } from '../../../common/atom';
 
 interface TodoCreateTypes {
   title: string;
@@ -16,6 +18,7 @@ interface TodoCreateTypes {
 const TodoEditForm = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
+  const setEditState = useSetRecoilState(editState);
   const [create, setCreate] = useState<TodoCreateTypes>({
     title: '',
     content: '',
@@ -57,6 +60,7 @@ const TodoEditForm = () => {
         title: create.title,
         content: create.content,
       });
+      setEditState(false);
       navigate('/todolist');
     } catch (err) {
       console.log('err');

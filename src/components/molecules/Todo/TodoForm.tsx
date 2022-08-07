@@ -6,6 +6,9 @@ import Title from '../../atoms/Title';
 import Content from '../../atoms/Content';
 import { useLocation } from 'react-router-dom';
 import { instance } from '../../../api/index';
+import Button from '../../atoms/Button';
+import { useSetRecoilState } from 'recoil';
+import { editState } from '../../../common/atom';
 
 interface TodoTypes {
   title: string;
@@ -17,6 +20,7 @@ interface TodoTypes {
 
 const TodoForm = () => {
   const { state } = useLocation();
+  const setEditState = useSetRecoilState(editState);
   const [todo, setTodo] = useState<TodoTypes>({
     title: '',
     content: '',
@@ -38,6 +42,10 @@ const TodoForm = () => {
     }
   };
 
+  const clickEdit = () => {
+    setEditState(true);
+  };
+
   return (
     <>
       <Title title={todo.title} type={'card'} />
@@ -47,6 +55,7 @@ const TodoForm = () => {
       <div>
         <Content text={todo.content} />
       </div>
+      <Button name="수정하기" onClick={clickEdit} btnType="submit" />
     </>
   );
 };
