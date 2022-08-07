@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { editState, loginState } from '../../common/atom';
 import TodoEditForm from '../../components/molecules/todo/TodoEditForm';
 import TodoForm from '../../components/molecules/todo/TodoForm';
-import TodoHome from '../../components/molecules/todo/TodoHome';
+import TodoHeader from '../../components/molecules/todo/TodoHeader';
 
 const Todo = () => {
   const navigate = useNavigate();
@@ -21,6 +21,7 @@ const Todo = () => {
 
   return (
     <TodoContainer>
+      <TodoHeader />
       {checkEditState ? <TodoEditForm /> : <TodoForm />}
     </TodoContainer>
   );
@@ -30,6 +31,6 @@ export default Todo;
 
 const TodoContainer = styled.div`
   display: grid;
-  place-items: center;
+  justify-items: center;
   padding-top: 100px;
 `;

@@ -4,12 +4,11 @@ import styled from 'styled-components';
 import DateText from '../../atoms/DateText';
 import Title from '../../atoms/Title';
 import Content from '../../atoms/Content';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { instance } from '../../../api/index';
 import Button from '../../atoms/Button';
 import { useSetRecoilState } from 'recoil';
 import { editState } from '../../../common/atom';
-import TodoHome from './TodoHome';
 
 interface TodoTypes {
   title: string;

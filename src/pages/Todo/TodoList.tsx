@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
 import { loginState } from '../../common/atom';
 import TodoListCard from '../../components/molecules/todo/TodoListCard';
-import TodoAddLogout from '../../components/molecules/todo/TodoAddLogout';
+import TodoAdd from '../../components/molecules/todo/TodoAdd';
 import { useNavigate } from 'react-router-dom';
+import TodoHeader from '../../components/molecules/todo/TodoHeader';
 
 interface TodoTypes {
   title: string;
@@ -39,21 +40,24 @@ const TodoList = () => {
   };
 
   return (
-    <TodoListContainer>
-      <TodoListCardsContainer>
-        {todoList.map((todo) => {
-          return (
-            <TodoListCard
-              key={todo.id}
-              id={todo.id}
-              title={todo.title}
-              date={todo.updatedAt}
-            />
-          );
-        })}
-      </TodoListCardsContainer>
-      <TodoAddLogout />
-    </TodoListContainer>
+    <>
+      <TodoListContainer>
+        <TodoHeader />
+        <TodoListCardsContainer>
+          {todoList.map((todo) => {
+            return (
+              <TodoListCard
+                key={todo.id}
+                id={todo.id}
+                title={todo.title}
+                date={todo.updatedAt}
+              />
+            );
+          })}
+        </TodoListCardsContainer>
+        <TodoAdd />
+      </TodoListContainer>
+    </>
   );
 };
 
@@ -62,7 +66,7 @@ export default TodoList;
 const TodoListContainer = styled.div`
   display: grid;
   place-items: center;
-  padding-top: 100px;
+  padding-top: 30px;
 `;
 
 const TodoListCardsContainer = styled.div`
