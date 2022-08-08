@@ -49,7 +49,7 @@ const AccountForm = ({ url, name }: AccountProp) => {
   const onClick = async () => {
     if (url == 'create') {
       try {
-        const res = await nonTokenInstance.post(`/users/${url}`, {
+        await nonTokenInstance.post(`/users/${url}`, {
           email: account.email,
           password: account.password,
         });

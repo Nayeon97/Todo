@@ -65,8 +65,14 @@ const TodoForm = () => {
       <div>
         <Content text={todo.content} />
       </div>
-      <Button name="수정하기" onClick={clickEdit} btnType="submit" />
-      <Button name="삭제하기" onClick={clickRemove} btnType="submit" />
+      <ButtonContainer>
+        <div>
+          <Button name="수정하기" onClick={clickEdit} btnType="submit" />
+        </div>
+        <div>
+          <Button name="삭제하기" onClick={clickRemove} btnType="delete" />
+        </div>
+      </ButtonContainer>
     </>
   );
 };
@@ -75,4 +81,9 @@ export default TodoForm;
 
 const DateWrapper = styled.div`
   margin: 10px 0px;
+`;
+
+const ButtonContainer = styled.div`
+  display: grid;
+  grid-template-columns: 220px 100px;
 `;

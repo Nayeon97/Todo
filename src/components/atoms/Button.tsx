@@ -9,7 +9,6 @@ interface ButtonProps {
 }
 
 const Button = ({ name, disabled, onClick, btnType }: ButtonProps) => {
-  console.log(btnType);
   return (
     <ButtonWrapper disabled={disabled} onClick={onClick} btnType={btnType}>
       {name}
@@ -20,20 +19,31 @@ const Button = ({ name, disabled, onClick, btnType }: ButtonProps) => {
 export default Button;
 
 const ButtonWrapper = styled.button<{ btnType: string }>`
-  width: ${(props) => (props.btnType === 'submit' ? '100px' : '50px')};
-  height: ${(props) => (props.btnType === 'submit' ? '40px' : '50px')};
+  width: ${(props) => (props.btnType === 'home' ? '50px' : '100px')};
+  height: ${(props) => (props.btnType === 'home' ? '50px' : '40px')};
   background-color: ${(props) => {
     switch (props.btnType) {
       case 'add':
-        return '#A5D8FF';
+        return '#0a86f7';
       case 'logout':
         return 'white';
+      case 'delete':
+        return '#e7f5ff';
       default:
         return '#0a86f7';
     }
   }};
-  color: ${(props) => (props.btnType === 'logout' ? '#228be6' : 'white')};
+  color: ${(props) => {
+    switch (props.btnType) {
+      case 'logout':
+        return '#228be6';
+      case 'delete':
+        return '#228be6';
+      default:
+        return 'white';
+    }
+  }};
   border: none;
-  border-radius: ${(props) => (props.btnType === 'submit' ? '10px' : '50%')};
+  border-radius: ${(props) => (props.btnType === 'home' ? '50%' : '10px')};
   cursor: pointer;
 `;

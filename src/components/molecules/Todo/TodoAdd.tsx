@@ -11,7 +11,7 @@ const TodoAdd = () => {
 
   return (
     <>
-      <Button name="+" onClick={clickAdd} btnType="add" />
+      <Button name="+" onClick={clickAdd} btnType="home" />
     </>
   );
 };

@@ -1,7 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const Content = ({ text }: { text: string }) => {
-  return <p>{text}</p>;
+  return <ContentWrapper>{text}</ContentWrapper>;
 };
 
 export default Content;
+
+const ContentWrapper = styled.div`
+  height: 300px;
+  width: 300px;
+  padding: 10px;
+  overflow: scroll;
+  background-color: #f8f9fa;
+  margin-bottom: 10px;
+`;
