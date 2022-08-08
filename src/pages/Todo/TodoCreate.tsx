@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import TodoCreateForm from '../../components/molecules/todo/TodoCreateForm';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { loginState } from '../../common/atom';
+
 import TodoHeader from '../../components/molecules/todo/TodoHeader';
+import Container from '../../components/atoms/Container';
 
 const CreateTodo = () => {
   const navigate = useNavigate();
@@ -18,15 +19,11 @@ const CreateTodo = () => {
   }, []);
 
   return (
-    <CreateTodoContainer>
+    <Container>
       <TodoHeader />
       <TodoCreateForm />
-    </CreateTodoContainer>
+    </Container>
   );
 };
 
 export default CreateTodo;
-
-const CreateTodoContainer = styled.div`
-  padding: 100px 50px;
-`;

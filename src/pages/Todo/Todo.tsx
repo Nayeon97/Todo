@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import styled from 'styled-components';
 import { editState, loginState } from '../../common/atom';
+import Container from '../../components/atoms/Container';
 import TodoEditForm from '../../components/molecules/todo/TodoEditForm';
 import TodoForm from '../../components/molecules/todo/TodoForm';
 import TodoHeader from '../../components/molecules/todo/TodoHeader';
@@ -20,17 +20,11 @@ const Todo = () => {
   }, []);
 
   return (
-    <TodoContainer>
+    <Container>
       <TodoHeader />
       {checkEditState ? <TodoEditForm /> : <TodoForm />}
-    </TodoContainer>
+    </Container>
   );
 };
 
 export default Todo;
-
-const TodoContainer = styled.div`
-  display: grid;
-  justify-items: center;
-  padding-top: 100px;
-`;

@@ -7,6 +7,7 @@ import TodoListCard from '../../components/molecules/todo/TodoListCard';
 import TodoAdd from '../../components/molecules/todo/TodoAdd';
 import { useNavigate } from 'react-router-dom';
 import TodoHeader from '../../components/molecules/todo/TodoHeader';
+import Container from '../../components/atoms/Container';
 
 interface TodoTypes {
   title: string;
@@ -41,7 +42,7 @@ const TodoList = () => {
 
   return (
     <>
-      <TodoListContainer>
+      <Container>
         <TodoHeader />
         <TodoListCardsContainer>
           {todoList.map((todo) => {
@@ -56,18 +57,12 @@ const TodoList = () => {
           })}
         </TodoListCardsContainer>
         <TodoAdd />
-      </TodoListContainer>
+      </Container>
     </>
   );
 };
 
 export default TodoList;
-
-const TodoListContainer = styled.div`
-  display: grid;
-  place-items: center;
-  padding-top: 60px;
-`;
 
 const TodoListCardsContainer = styled.div`
   height: 400px;

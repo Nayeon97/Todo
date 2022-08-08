@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { useResetRecoilState } from 'recoil';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { loginState, editState } from '../../../common/atom';
 import Button from '../../atoms/Button';
 
 const TodoHeader = () => {
   const navigate = useNavigate();
+  const setEditState = useSetRecoilState(editState);
   const resetLoginState = useResetRecoilState(loginState);
   const resetEditState = useResetRecoilState(editState);
 
@@ -19,6 +20,7 @@ const TodoHeader = () => {
 
   const clickHome = () => {
     navigate('/todolist');
+    setEditState(false);
   };
 
   return (
