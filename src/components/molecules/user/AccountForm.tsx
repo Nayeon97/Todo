@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Input from '../../atoms/Input';
 import Button from '../../atoms/Button';
-import { nonTokenInstance } from '../../../api/index';
+import { instance } from '../../../api/index';
 import { loginState } from '../../../common/atom';
 import { useSetRecoilState } from 'recoil';
 
@@ -49,7 +49,7 @@ const AccountForm = ({ url, name }: AccountProp) => {
   const onClick = async () => {
     if (url == 'create') {
       try {
-        await nonTokenInstance.post(`/users/${url}`, {
+        await instance.post(`/users/${url}`, {
           email: account.email,
           password: account.password,
         });
@@ -59,7 +59,7 @@ const AccountForm = ({ url, name }: AccountProp) => {
       }
     } else {
       try {
-        const res = await nonTokenInstance.post(`/users/${url}`, {
+        const res = await instance.post(`/users/${url}`, {
           email: account.email,
           password: account.password,
         });

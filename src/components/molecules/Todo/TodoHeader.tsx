@@ -26,7 +26,7 @@ const TodoHeader = () => {
   return (
     <HeaderContainer>
       <div>
-        <Button name="Home" onClick={clickHome} btnType={'home'} />
+        <Button name="Home" onClick={clickHome} btnType='home' />
       </div>
       <div>
         <Button name="logout" onClick={clickLogout} btnType="logout" />

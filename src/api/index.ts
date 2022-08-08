@@ -6,17 +6,28 @@ const serverUrl =
 
 export const instance = axios.create({
   baseURL: serverUrl,
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('token')}`,
-    'content-type': 'application/json;charset=UTF-8',
-    accept: 'application/json,',
-  },
+  timeout: 20000,
 });
 
-export const nonTokenInstance = axios.create({
-  baseURL: serverUrl,
-  headers: {
-    'content-type': 'application/json;charset=UTF-8',
-    accept: 'application/json,',
+instance.interceptors.request.use(
+  async (config) => {
+    const accessToken = localStorage.getItem('token');
+    config.headers = {
+      Authorization: `Bearer ${accessToken}`,
+      Accept: 'application/json',
+    };
+    return config;
   },
-});
+  (error) => {
+    Promise.reject(error);
+  },
+);
+
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    Promise.reject(error);
+  },
+);
