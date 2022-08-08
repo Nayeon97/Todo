@@ -4,6 +4,7 @@ import Button from '../../atoms/Button';
 import Textarea from '../../atoms/Textarea';
 import TitleInput from '../../atoms/TitleInput';
 import { instance } from '../../../api/index';
+import { useNavigate } from 'react-router-dom';
 
 interface TodoCreateTypes {
   title: string;
@@ -15,6 +16,8 @@ const TodoCreateForm = () => {
     title: '',
     content: '',
   });
+
+  const navigate = useNavigate();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -38,6 +41,7 @@ const TodoCreateForm = () => {
         title: create.title,
         content: create.content,
       });
+      navigate('/todolist');
     } catch (err) {
       console.log('err');
     }
