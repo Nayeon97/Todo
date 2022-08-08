@@ -66,11 +66,12 @@ export default TodoList;
 const TodoListContainer = styled.div`
   display: grid;
   place-items: center;
-  padding-top: 30px;
+  padding-top: 60px;
 `;
 
 const TodoListCardsContainer = styled.div`
-  height: 450px;
+  height: 400px;
   padding: 5px;
+  overflow: scroll;
   margin-bottom: 10px;
 `;
