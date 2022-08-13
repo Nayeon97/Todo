@@ -8,6 +8,8 @@ import Main from './pages/Main/Main';
 import TodoList from './pages/Todo/TodoList';
 import Todo from './pages/Todo/Todo';
 import TodoCreate from './pages/Todo/TodoCreate';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
@@ -22,6 +24,12 @@ const App = () => {
           <Route path="/todocreate" element={<TodoCreate />} />
         </Routes>
       </Router>
+      <ToastContainer
+        style={{ fontSize: '15px', marginTop: '30px' }}
+        position="top-center"
+        autoClose={1200}
+        closeOnClick={true}
+      />
     </AppContainer>
   );
 };
@@ -35,8 +43,6 @@ const AppContainer = styled.div`
   background: white;
   border-radius: 16px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
-
   margin: 0 auto;
-
   margin-top: 50px;
 `;

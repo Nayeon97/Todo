@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { editState, loginState } from '../../common/atom';
-import Container from '../../components/atoms/Container';
+import Template from '../../components/templates/Template';
 import TodoEditForm from '../../components/molecules/todo/TodoEditForm';
 import TodoForm from '../../components/molecules/todo/TodoForm';
 import TodoHeader from '../../components/molecules/todo/TodoHeader';
@@ -20,10 +20,10 @@ const Todo = () => {
   }, []);
 
   return (
-    <Container>
+    <Template>
       <TodoHeader />
       {checkEditState ? <TodoEditForm /> : <TodoForm />}
-    </Container>
+    </Template>
   );
 };
 

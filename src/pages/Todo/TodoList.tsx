@@ -7,7 +7,8 @@ import TodoListCard from '../../components/molecules/todo/TodoListCard';
 import TodoAdd from '../../components/molecules/todo/TodoAdd';
 import { useNavigate } from 'react-router-dom';
 import TodoHeader from '../../components/molecules/todo/TodoHeader';
-import Container from '../../components/atoms/Container';
+import Template from '../../components/templates/Template';
+import SnackBar from '../../components/atoms/SnackBar';
 
 interface TodoTypes {
   title: string;
@@ -24,7 +25,7 @@ const TodoList = () => {
 
   useEffect(() => {
     if (!checkLoginState) {
-      alert('로그인 후 이용해주세요.');
+      SnackBar('로그인 후 이용해주세요.', 'sucess');
       navigate('/');
     } else {
       getTodo();
@@ -36,13 +37,13 @@ const TodoList = () => {
       const res = await instance.get('/todos');
       setTodoList(res.data.data);
     } catch (err) {
-      console.log('error');
+      console.log(err);
     }
   };
 
   return (
     <>
-      <Container>
+      <Template>
         <TodoHeader />
         <TodoListCardsContainer>
           {todoList.map((todo) => {
@@ -57,7 +58,7 @@ const TodoList = () => {
           })}
         </TodoListCardsContainer>
         <TodoAdd />
-      </Container>
+      </Template>
     </>
   );
 };

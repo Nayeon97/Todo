@@ -5,7 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { loginState } from '../../common/atom';
 
 import TodoHeader from '../../components/molecules/todo/TodoHeader';
-import Container from '../../components/atoms/Container';
+import Template from '../../components/templates/Template';
 
 const CreateTodo = () => {
   const navigate = useNavigate();
@@ -19,10 +19,10 @@ const CreateTodo = () => {
   }, []);
 
   return (
-    <Container>
+    <Template>
       <TodoHeader />
       <TodoCreateForm />
-    </Container>
+    </Template>
   );
 };
 
