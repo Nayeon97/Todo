@@ -55,7 +55,9 @@ const AccountForm = ({ url, name }: AccountProp) => {
         });
         navigate('/signin');
       } catch (err) {
-        console.log(err);
+        if (err instanceof Error) {
+          console.log(err.message);
+        }
       }
     } else {
       try {
@@ -67,7 +69,9 @@ const AccountForm = ({ url, name }: AccountProp) => {
         setLoginState(true);
         navigate('/todolist');
       } catch (err) {
-        console.log(err);
+        if (err instanceof Error) {
+          console.log(err.message);
+        }
       }
     }
   };

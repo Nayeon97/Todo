@@ -12,6 +12,7 @@ const ContentWrapper = styled.div`
   width: 300px;
   padding: 10px;
   overflow: scroll;
+  overflow-x: hidden;
   background-color: #f8f9fa;
   margin-bottom: 10px;
 `;

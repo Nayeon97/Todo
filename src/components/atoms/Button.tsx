@@ -5,7 +5,7 @@ interface ButtonProps {
   name: string;
   btnType: string;
   disabled?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: () => void;
 }
 
 const Button = ({ name, disabled, onClick, btnType }: ButtonProps) => {

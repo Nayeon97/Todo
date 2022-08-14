@@ -69,5 +69,6 @@ const TodoListCardsContainer = styled.div`
   height: 400px;
   padding: 5px;
   overflow: scroll;
+  overflow-x: hidden;
   margin-bottom: 10px;
 `;
