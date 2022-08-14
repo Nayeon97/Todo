@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom';
 import { instance } from '../../../api/index';
 import { useSetRecoilState } from 'recoil';
 import { editState } from '../../../common/atom';
+import SnackBar from '../../atoms/SnackBar';
 
 interface TodoCreateTypes {
   title: string;
@@ -63,7 +64,9 @@ const TodoEditForm = () => {
       setEditState(false);
       navigate('/todolist');
     } catch (err) {
-      console.log('err');
+      if (err instanceof Error) {
+        SnackBar('error', err.message);
+      }
     }
   };
 

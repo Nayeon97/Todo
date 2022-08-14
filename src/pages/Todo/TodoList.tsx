@@ -37,7 +37,9 @@ const TodoList = () => {
       const res = await instance.get('/todos');
       setTodoList(res.data.data);
     } catch (err) {
-      console.log(err);
+      if (err instanceof Error) {
+        SnackBar('error', err.message);
+      }
     }
   };
 

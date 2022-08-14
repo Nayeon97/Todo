@@ -6,6 +6,7 @@ import Button from '../../atoms/Button';
 import { instance } from '../../../api/index';
 import { loginState } from '../../../common/atom';
 import { useSetRecoilState } from 'recoil';
+import SnackBar from '../../atoms/SnackBar';
 
 interface AccountTypes {
   email: string;
@@ -70,7 +71,7 @@ const AccountForm = ({ url, name }: AccountProp) => {
         navigate('/todolist');
       } catch (err) {
         if (err instanceof Error) {
-          console.log(err.message);
+          SnackBar('error', err.message);
         }
       }
     }

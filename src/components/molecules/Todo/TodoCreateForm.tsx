@@ -5,6 +5,7 @@ import Textarea from '../../atoms/Textarea';
 import TitleInput from '../../atoms/TitleInput';
 import { instance } from '../../../api/index';
 import { useNavigate } from 'react-router-dom';
+import SnackBar from '../../atoms/SnackBar';
 
 interface TodoCreateTypes {
   title: string;
@@ -43,7 +44,9 @@ const TodoCreateForm = () => {
       });
       navigate('/todolist');
     } catch (err) {
-      console.log('err');
+      if (err instanceof Error) {
+        SnackBar('error', err.message);
+      }
     }
   };
 

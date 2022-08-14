@@ -9,6 +9,7 @@ import { instance } from '../../../api/index';
 import Button from '../../atoms/Button';
 import { useSetRecoilState } from 'recoil';
 import { editState } from '../../../common/atom';
+import SnackBar from '../../atoms/SnackBar';
 
 interface TodoTypes {
   title: string;
@@ -39,7 +40,9 @@ const TodoForm = () => {
       const res = await instance.get(`todos/${state}`);
       setTodo(res.data.data);
     } catch (err) {
-      console.log('err');
+      if (err instanceof Error) {
+        SnackBar('error', err.message);
+      }
     }
   };
 
@@ -52,7 +55,9 @@ const TodoForm = () => {
       await instance.delete(`todos/${state}`);
       navigate('/todolist');
     } catch (err) {
-      console.log(err);
+      if (err instanceof Error) {
+        SnackBar('error', err.message);
+      }
     }
   };
 
