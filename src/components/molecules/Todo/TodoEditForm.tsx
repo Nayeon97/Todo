@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, SetStateAction } from 'react';
 import styled from 'styled-components';
 import TitleInput from '../../atoms/TitleInput';
 import Textarea from '../../atoms/Textarea';

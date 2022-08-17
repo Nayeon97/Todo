@@ -50,7 +50,13 @@ const TodoForm = () => {
     setEditState(true);
   };
 
-  const clickRemove = async () => {
+  const confirmAction = () => {
+    if (window.confirm('해당 Todo 는 삭제됩니다.')) {
+      removeAction();
+    }
+  };
+
+  const removeAction = async () => {
     try {
       await instance.delete(`todos/${state}`);
       navigate('/todolist');
@@ -75,7 +81,7 @@ const TodoForm = () => {
           <Button name="수정하기" onClick={clickEdit} btnType="submit" />
         </div>
         <div>
-          <Button name="삭제하기" onClick={clickRemove} btnType="delete" />
+          <Button name="삭제하기" onClick={confirmAction} btnType="delete" />
         </div>
       </ButtonContainer>
     </>
