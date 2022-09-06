@@ -12,6 +12,7 @@ export const instance = axios.create({
 instance.interceptors.request.use(
   async (config) => {
     const accessToken = localStorage.getItem('token');
+    console.log(accessToken);
     config.headers = {
       Authorization: `Bearer ${accessToken}`,
       Accept: 'application/json',
@@ -19,15 +20,19 @@ instance.interceptors.request.use(
     return config;
   },
   (error) => {
+    console.log(error);
     Promise.reject(error);
   },
 );
 
 instance.interceptors.response.use(
   (response) => {
+    if (response.data.token) {
+      window.localStorage.setItem('token', response.data.token);
+    }
     return response;
   },
   async (error) => {
-    Promise.reject(error);
+    return Promise.reject(error);
   },
 );

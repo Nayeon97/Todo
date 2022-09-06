@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import AccountForm from '../../components/molecules/user/AccountForm';
-import Template from '../../components/templates/Template';
 
 const SignIn = () => {
   return (

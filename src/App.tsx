@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import SignUp from './pages/User/SignUp';
 import SignIn from './pages/User/SignIn';
 import styled from 'styled-components';
@@ -12,25 +14,30 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
+  const queryClient = new QueryClient();
+
   return (
-    <AppContainer>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/todolist" element={<TodoList />} />
-          <Route path="/todo/:todoId" element={<Todo />} />
-          <Route path="/todocreate" element={<TodoCreate />} />
-        </Routes>
-      </Router>
-      <ToastContainer
-        style={{ fontSize: '15px', marginTop: '30px' }}
-        position="top-center"
-        autoClose={1200}
-        closeOnClick={true}
-      />
-    </AppContainer>
+    <QueryClientProvider client={queryClient}>
+      <AppContainer>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/todolist" element={<TodoList />} />
+            <Route path="/todo/:todoId" element={<Todo />} />
+            <Route path="/todocreate" element={<TodoCreate />} />
+          </Routes>
+        </Router>
+        <ToastContainer
+          style={{ fontSize: '15px', marginTop: '30px' }}
+          position="top-center"
+          autoClose={1200}
+          closeOnClick={true}
+        />
+      </AppContainer>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 };
 

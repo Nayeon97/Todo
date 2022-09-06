@@ -49,30 +49,38 @@ const AccountForm = ({ url, name }: AccountProp) => {
 
   const onClick = async () => {
     if (url == 'create') {
-      try {
-        await instance.post(`/users/${url}`, {
-          email: account.email,
-          password: account.password,
-        });
-        navigate('/signin');
-      } catch (err) {
-        if (err instanceof Error) {
-          console.log(err.message);
-        }
-      }
+      clickRegister();
     } else {
-      try {
-        const res = await instance.post(`/users/${url}`, {
-          email: account.email,
-          password: account.password,
-        });
-        window.localStorage.setItem('token', res.data.token);
-        setLoginState(true);
-        navigate('/todolist');
-      } catch (err) {
-        if (err instanceof Error) {
-          SnackBar('error', err.message);
-        }
+      clickLogin();
+    }
+  };
+
+  const clickRegister = async () => {
+    try {
+      await instance.post(`/users/${url}`, {
+        email: account.email,
+        password: account.password,
+      });
+      navigate('/signin');
+    } catch (err) {
+      if (err instanceof Error) {
+        console.log(err.message);
+      }
+    }
+  };
+
+  const clickLogin = async () => {
+    try {
+      const res = await instance.post(`/users/${url}`, {
+        email: account.email,
+        password: account.password,
+      });
+      window.localStorage.setItem('token', res.data.token);
+      setLoginState(true);
+      navigate('/todolist');
+    } catch (err) {
+      if (err instanceof Error) {
+        SnackBar('error', err.message);
       }
     }
   };
