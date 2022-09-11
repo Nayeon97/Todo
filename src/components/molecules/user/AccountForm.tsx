@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import Input from '../../atoms/Input';
 import Button from '../../atoms/Button';
 import { instance } from '../../../api/index';
-import { loginState } from '../../../common/atom';
-import { useSetRecoilState } from 'recoil';
 import SnackBar from '../../atoms/SnackBar';
 
 interface AccountTypes {
@@ -19,8 +17,6 @@ interface AccountProp {
 }
 
 const AccountForm = ({ url, name }: AccountProp) => {
-  const setLoginState = useSetRecoilState(loginState);
-
   const [account, setAccount] = useState<AccountTypes>({
     email: '',
     password: '',
@@ -76,7 +72,6 @@ const AccountForm = ({ url, name }: AccountProp) => {
         password: account.password,
       });
       window.localStorage.setItem('token', res.data.token);
-      setLoginState(true);
       navigate('/todolist');
     } catch (err) {
       if (err instanceof Error) {

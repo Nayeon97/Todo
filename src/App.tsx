@@ -12,6 +12,8 @@ import Todo from './pages/Todo/Todo';
 import TodoCreate from './pages/Todo/TodoCreate';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PrivateRoute from './routes/PrivateRoute';
+import LoginRoute from './routes/LoginRoute';
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -21,12 +23,21 @@ const App = () => {
       <AppContainer>
         <Router>
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route path="/" element={<LoginRoute component={<Main />} />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/signin" element={<SignIn />} />
-            <Route path="/todolist" element={<TodoList />} />
-            <Route path="/todo/:todoId" element={<Todo />} />
-            <Route path="/todocreate" element={<TodoCreate />} />
+            <Route
+              path="/todolist"
+              element={<PrivateRoute component={<TodoList />} />}
+            />
+            <Route
+              path="/todo/:todoId"
+              element={<PrivateRoute component={<Todo />} />}
+            />
+            <Route
+              path="/todocreate"
+              element={<PrivateRoute component={<TodoCreate />} />}
+            />
           </Routes>
         </Router>
         <ToastContainer

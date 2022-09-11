@@ -2,17 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
-import { loginState, editState } from '../../../common/atom';
+import { editState } from '../../../common/atom';
 import Button from '../../atoms/Button';
 
 const TodoHeader = () => {
   const navigate = useNavigate();
   const setEditState = useSetRecoilState(editState);
-  const resetLoginState = useResetRecoilState(loginState);
   const resetEditState = useResetRecoilState(editState);
 
   const clickLogout = () => {
-    resetLoginState();
     resetEditState();
     window.localStorage.removeItem('token');
     navigate('/');
