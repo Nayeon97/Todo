@@ -67,11 +67,10 @@ const AccountForm = ({ url, name }: AccountProp) => {
 
   const clickLogin = async () => {
     try {
-      const res = await instance.post(`/users/${url}`, {
+      await instance.post(`/users/${url}`, {
         email: account.email,
         password: account.password,
       });
-      window.localStorage.setItem('token', res.data.token);
       navigate('/todolist');
     } catch (err) {
       if (err instanceof Error) {
