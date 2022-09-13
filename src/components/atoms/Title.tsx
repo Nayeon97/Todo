@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface TitleProps {
-  title: string;
+  title: string | undefined;
   type: string;
 }
 

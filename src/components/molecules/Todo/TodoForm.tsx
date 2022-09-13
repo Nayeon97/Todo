@@ -1,50 +1,21 @@
 // Todo 상세 페이지 양식
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import DateText from '../../atoms/DateText';
 import Title from '../../atoms/Title';
 import Content from '../../atoms/Content';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { instance } from '../../../api/index';
+import { useLocation } from 'react-router-dom';
 import Button from '../../atoms/Button';
 import { useSetRecoilState } from 'recoil';
 import { editState } from '../../../common/atom';
-import SnackBar from '../../atoms/SnackBar';
+import useDeleteTodo from '../../../hooks/useDeleteTodo';
+import { TodoId, TodoProps } from '../../../common/types';
 
-interface TodoTypes {
-  title: string;
-  content: string;
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-const TodoForm = () => {
-  const { state } = useLocation();
-  const navigate = useNavigate();
+const TodoForm = ({ todo }: TodoProps) => {
+  const location = useLocation();
+  const state = location.state as TodoId;
+  const deleteTodo = useDeleteTodo();
   const setEditState = useSetRecoilState(editState);
-  const [todo, setTodo] = useState<TodoTypes>({
-    title: '',
-    content: '',
-    id: '',
-    createdAt: '',
-    updatedAt: '',
-  });
-
-  useEffect(() => {
-    getTodo();
-  }, []);
-
-  const getTodo = async () => {
-    try {
-      const res = await instance.get(`todos/${state}`);
-      setTodo(res.data.data);
-    } catch (err) {
-      if (err instanceof Error) {
-        SnackBar('error', err.message);
-      }
-    }
-  };
 
   const clickEdit = () => {
     setEditState(true);
@@ -57,24 +28,17 @@ const TodoForm = () => {
   };
 
   const removeAction = async () => {
-    try {
-      await instance.delete(`todos/${state}`);
-      navigate('/todolist');
-    } catch (err) {
-      if (err instanceof Error) {
-        SnackBar('error', err.message);
-      }
-    }
+    deleteTodo.mutate(state);
   };
 
   return (
     <>
-      <Title title={todo.title} type={'card'} />
+      <Title title={todo?.title} type={'card'} />
       <DateWrapper>
-        <DateText date={todo.updatedAt} />
+        <DateText date={todo?.updatedAt} />
       </DateWrapper>
       <div>
-        <Content text={todo.content} />
+        <Content text={todo?.content} />
       </div>
       <ButtonContainer>
         <div>

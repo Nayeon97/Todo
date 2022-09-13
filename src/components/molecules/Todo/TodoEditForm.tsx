@@ -1,43 +1,28 @@
-import React, { useState, useEffect, SetStateAction } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import TitleInput from '../../atoms/TitleInput';
 import Textarea from '../../atoms/Textarea';
 import Button from '../../atoms/Button';
-import { useNavigate } from 'react-router-dom';
+
 import { useLocation } from 'react-router-dom';
-import { instance } from '../../../api/index';
-import { useSetRecoilState } from 'recoil';
-import { editState } from '../../../common/atom';
-import SnackBar from '../../atoms/SnackBar';
+import { TodoId, TodoProps } from '../../../common/types';
+
+import useUpdateTodo from '../../../hooks/useUpdateTodo';
 
 interface TodoCreateTypes {
   title: string;
   content: string;
-  id: string;
 }
 
-const TodoEditForm = () => {
-  const { state } = useLocation();
-  const navigate = useNavigate();
-  const setEditState = useSetRecoilState(editState);
+const TodoEditForm = ({ todo }: TodoProps) => {
+  const location = useLocation();
+  const state = location.state as TodoId;
+  const updateTodo = useUpdateTodo(state);
+
   const [create, setCreate] = useState<TodoCreateTypes>({
-    title: '',
-    content: '',
-    id: '',
+    title: todo.title,
+    content: todo.content,
   });
-
-  useEffect(() => {
-    getTodo();
-  }, []);
-
-  const getTodo = async () => {
-    try {
-      const res = await instance.get(`todos/${state}`);
-      setCreate(res.data.data);
-    } catch (err) {
-      console.log('err');
-    }
-  };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -56,18 +41,7 @@ const TodoEditForm = () => {
   };
 
   const onClick = async () => {
-    try {
-      await instance.put(`/todos/${create.id}`, {
-        title: create.title,
-        content: create.content,
-      });
-      setEditState(false);
-      navigate('/todolist');
-    } catch (err) {
-      if (err instanceof Error) {
-        SnackBar('error', err.message);
-      }
-    }
+    updateTodo.mutate(create);
   };
 
   return (

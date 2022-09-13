@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { instance } from '../../api/index';
+import React from 'react';
 import styled from 'styled-components';
 import TodoListCard from '../../components/molecules/todo/TodoListCard';
 import TodoAdd from '../../components/molecules/todo/TodoAdd';
 import TodoHeader from '../../components/molecules/todo/TodoHeader';
 import Template from '../../components/templates/Template';
-import SnackBar from '../../components/atoms/SnackBar';
+import useGetTodoList from '../../hooks/useGetTodoList';
 
 interface TodoTypes {
   title: string;
@@ -16,29 +15,14 @@ interface TodoTypes {
 }
 
 const TodoList = () => {
-  const [todoList, setTodoList] = useState<TodoTypes[]>([]);
-
-  useEffect(() => {
-    getTodo();
-  }, []);
-
-  const getTodo = async () => {
-    try {
-      const res = await instance.get('/todos');
-      setTodoList(res.data.data);
-    } catch (err) {
-      if (err instanceof Error) {
-        SnackBar('error', err.message);
-      }
-    }
-  };
+  const { data, isLoading } = useGetTodoList();
 
   return (
     <>
       <Template>
         <TodoHeader />
         <TodoListCardsContainer>
-          {todoList.map((todo) => {
+          {data?.data.map((todo: TodoTypes) => {
             return (
               <TodoListCard
                 key={todo.id}
@@ -48,6 +32,7 @@ const TodoList = () => {
               />
             );
           })}
+          {isLoading && <h2>Loading...</h2>}
         </TodoListCardsContainer>
         <TodoAdd />
       </Template>

@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import Button from '../../atoms/Button';
 import Textarea from '../../atoms/Textarea';
 import TitleInput from '../../atoms/TitleInput';
-import { instance } from '../../../api/index';
-import { useNavigate } from 'react-router-dom';
-import SnackBar from '../../atoms/SnackBar';
+import useCreateTodo from '../../../hooks/useCreateTodo';
 
 interface TodoCreateTypes {
   title: string;
@@ -13,12 +11,12 @@ interface TodoCreateTypes {
 }
 
 const TodoCreateForm = () => {
+  const createTodo = useCreateTodo();
+
   const [create, setCreate] = useState<TodoCreateTypes>({
     title: '',
     content: '',
   });
-
-  const navigate = useNavigate();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -36,18 +34,8 @@ const TodoCreateForm = () => {
     });
   };
 
-  const onClick = async () => {
-    try {
-      await instance.post('/todos', {
-        title: create.title,
-        content: create.content,
-      });
-      navigate('/todolist');
-    } catch (err) {
-      if (err instanceof Error) {
-        SnackBar('error', err.message);
-      }
-    }
+  const onSubmitTodo = async () => {
+    createTodo.mutate(create);
   };
 
   return (
@@ -68,7 +56,7 @@ const TodoCreateForm = () => {
         />
       </CreateForm>
       <ButtonWrapper>
-        <Button name="저장하기" onClick={onClick} btnType={'submit'} />
+        <Button name="저장하기" onClick={onSubmitTodo} btnType={'submit'} />
       </ButtonWrapper>
     </div>
   );
