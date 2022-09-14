@@ -8,13 +8,19 @@ import TodoHeader from '../../components/molecules/todo/TodoHeader';
 import { useLocation } from 'react-router-dom';
 import { TodoId } from '../../common/types';
 import useGetTodoById from '../../hooks/useGetTodoById';
+import SnackBar from '../../components/atoms/SnackBar';
+import { AxiosError } from 'axios';
 
 const Todo = () => {
   const checkEditState = useRecoilValue(editState);
 
   const location = useLocation();
   const state = location.state as TodoId;
-  const { data: todo } = useGetTodoById(state);
+
+  const { data: todo, error } = useGetTodoById(state);
+
+  if (error instanceof AxiosError)
+    SnackBar(error.response?.data?.details, 'error');
 
   return (
     <Template>

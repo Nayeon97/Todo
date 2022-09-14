@@ -20,7 +20,7 @@ const useCreateTodo = () => {
     },
     onError: (error) => {
       if (error instanceof AxiosError) {
-        SnackBar('error', error.message);
+        SnackBar(error.response?.data?.details, 'error');
       }
     },
   });

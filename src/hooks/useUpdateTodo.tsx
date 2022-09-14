@@ -23,7 +23,7 @@ const useUpdateTodo = (id: TodoId) => {
     },
     onError: (error) => {
       if (error instanceof AxiosError) {
-        SnackBar('error', error.message);
+        SnackBar(error.response?.data?.details, 'error');
       }
     },
   });
