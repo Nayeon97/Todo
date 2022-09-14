@@ -4,7 +4,7 @@
 
 ### ⚙️ 사용한 기술 스택
 
-`React` `TypeScript` `Recoil` `Styled-components` `axios`
+`React` `TypeScript` `TanStack Query` `Recoil` `Styled-components` `axios`
 
 ### 🗂 구현 내용
 
