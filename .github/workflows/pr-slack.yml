@@ -1,37 +1,28 @@
 name: PR Slack Notifications
-
 on:
-  pull_request:
-    types: [opened, review_requested, closed]
-  issue_comment:
-    types: [created]
-  pull_request_review:
-    types: [submitted]
+  pull_request: { types: [opened, review_requested, closed] }
+  issue_comment: { types: [created] }
+  pull_request_review: { types: [submitted] }
 
 jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Checkout private action repo
         uses: actions/checkout@v4
         with:
           repository: nayeon97/code-review-action-v1
-          ref: v1         # 또는 main/특정 SHA
+          ref: v1                     # 또는 main/특정 SHA
           path: ./.github/actions/pr-slack
           token: ${{ secrets.ACTIONS_CHECKOUT_TOKEN }}
 
-      # 2) (선택) dist가 이미 커밋되어 있으면 build 생략 가능
-      - name: Build action (if needed)
-        run: cd ./.github/actions/pr-slack && npm ci && npm run build
-
-      - uses: nayeon97/code-review-action-v1@v1
+      # dist가 커밋되어 있으므로 빌드 생략 가능
+      - uses: ./.github/actions/pr-slack
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           slack-token: ${{ secrets.SLACK_BOT_TOKEN }}
           slack-channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
           slack-workspace: your-workspace
           reviewers-file: reviewers.yml
-
-
-
