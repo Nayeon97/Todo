@@ -1,0 +1,25 @@
+name: PR Slack Notifications
+
+on:
+  pull_request:
+    types: [opened, review_requested, closed]
+  issue_comment:
+    types: [created]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Nayeon97/code-review-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          slack-token: ${{ secrets.SLACK_BOT_TOKEN }}
+          slack-channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
+          slack-workspace: your-workspace
+          reviewers-file: reviewers.yml
+
+
+
