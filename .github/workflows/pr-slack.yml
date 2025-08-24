@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: Nayeon97/code-review-action@v1
+      - uses: Nayeon97/code-review-action-v1@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           slack-token: ${{ secrets.SLACK_BOT_TOKEN }}
