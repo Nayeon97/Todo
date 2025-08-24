@@ -16,7 +16,7 @@ jobs:
       - name: Checkout private action repo
         uses: actions/checkout@v4
         with:
-          repository: Nayeon97/code-review-action-v1
+          repository: nayeon97/code-review-action-v1
           ref: v1         # 또는 main/특정 SHA
           path: ./.github/actions/pr-slack
           token: ${{ secrets.ACTIONS_CHECKOUT_TOKEN }}
@@ -25,7 +25,7 @@ jobs:
       - name: Build action (if needed)
         run: cd ./.github/actions/pr-slack && npm ci && npm run build
 
-      - uses: Nayeon97/code-review-action-v1@v1
+      - uses: nayeon97/code-review-action-v1@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           slack-token: ${{ secrets.SLACK_BOT_TOKEN }}

@@ -11,7 +11,6 @@
 ![todogif](https://user-images.githubusercontent.com/89979344/184529396-be32b9b4-0091-4c3c-b069-fa2bb1a2cf1c.gif)
 
 #### ✔️ Assignment 1 - Login / SignUp
-
 - /auth 경로에 로그인 / 회원가입 기능을 개발합니다
   - 로그인, 회원가입을 별도의 경로로 분리해도 무방합니다
   - [x] 최소한 이메일, 비밀번호 input, 제출 button을 갖도록 구성해주세요
